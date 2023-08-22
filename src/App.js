@@ -2,6 +2,7 @@
 import './App.css';
 import {useState} from 'react';
 import FilmList from './components/FilmList';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 //const[state,setState]=useState([initialState])
 const App=()=>{
@@ -27,9 +28,11 @@ const App=()=>{
         "Poster": "https://m.media-amazon.com/images/M/MV5BMjE0YjUzNDUtMjc5OS00MTU3LTgxMmUtODhkOThkMzdjNWI4XkEyXkFqcGdeQXVyMTA3MzQ4MTc0._V1_SX300.jpg"
     }]);
 return(
-<div className="App">
-    <FilmList films={films}/>
-<h1>Hello</h1>
+<div className="App container-fluid film-css">
+<div className="row">
+<FilmList films={films}/>
+    </div>
+    
 
 </div>
 

@@ -1,4 +1,12 @@
 .App {
-  text-align: center;
-}
+ /*text-align: center;*/
+ background:#141414;
+ color:#fff;
+ 
 
+ .film-css > .row{
+  overflow-x:auto;
+  flexwrap:nowrap;
+  
+ }
+};
