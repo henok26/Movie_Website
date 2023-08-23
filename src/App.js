@@ -1,44 +1,34 @@
-
 import './App.css';
-import {useState} from 'react';
+import { useEffect, useState } from 'react';
 import FilmList from './components/FilmList';
+import FilmListHeading from './components/FilmList';
 import "bootstrap/dist/css/bootstrap.min.css";
 
-//const[state,setState]=useState([initialState])
-const App=()=>{
-    const [films] = useState([  {
-        "Title": "Harry Potter and the Deathly Hallows: Part 2",
-        "Year": "2011",
-        "imdbID": "tt1201607",
-        "Type": "movie",
-        "Poster": "https://m.media-amazon.com/images/M/MV5BMGVmMWNiMDktYjQ0Mi00MWIxLTk0N2UtN2ZlYTdkN2IzNDNlXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg"
-    },
-    {
-        "Title": "Harry Potter and the Sorcerer's Stone",
-        "Year": "2001",
-        "imdbID": "tt0241527",
-        "Type": "movie",
-        "Poster": "https://m.media-amazon.com/images/M/MV5BNmQ0ODBhMjUtNDRhOC00MGQzLTk5MTAtZDliODg5NmU5MjZhXkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_SX300.jpg"
-    },
-    {
-        "Title": "Harry Potter and the Chamber of Secrets",
-        "Year": "2002",
-        "imdbID": "tt0295297",
-        "Type": "movie",
-        "Poster": "https://m.media-amazon.com/images/M/MV5BMjE0YjUzNDUtMjc5OS00MTU3LTgxMmUtODhkOThkMzdjNWI4XkEyXkFqcGdeQXVyMTA3MzQ4MTc0._V1_SX300.jpg"
-    }]);
-return(
-<div className="App container-fluid film-css">
-<div className="row">
-<FilmList films={films}/>
-    </div>
-    
+const App = () => {
+    const [films, setFilms] = useState([]); // Define setFilms here with an initial empty array
+const [searchFilm,setSearchFilm]=useState();
+    const getFilmRequest = async () => {
+        const url = "http://www.omdbapi.com/?s=Harry Potter&apikey=ff1e75a7";
+        const response = await fetch(url);
+        const responseJson = await response.json();
+        console.log(responseJson);
+        setFilms(responseJson.Search);
+    };
 
-</div>
+    useEffect(() => {
+        getFilmRequest();
+    }, []);
 
-);
-
+    return (
+        <div className="App container-fluid">
+            <div className="row">
+                <FilmList films={films} />
+            </div>
+            <div className="col">
+                <FilmListHeading heading="film" />
+            </div>
+        </div>
+    );
 }
-
 
 export default App;

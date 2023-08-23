@@ -1,12 +1,21 @@
-.App {
- /*text-align: center;*/
- background:#141414;
- color:#fff;
- 
+/* styles.css */
 
- .film-css > .row{
-  overflow-x:auto;
-  flexwrap:nowrap;
+/* Add this style to create a flex container for the film posters */
+.App{
+background: black;
+color:#fff;
+
+
+}
+.film-list {
+    display: flex;
+    overflow-x: auto;
+flex-wrap: nowrap; /* Allows posters to wrap to the next row if there's not enough space */
+    justify-content: flex-start; /* Adjust alignment as needed (e.g., space-around, center) */
+  }
   
- }
-};
+  /* Add this style to control the individual film poster items */
+  .film-item {
+    margin: 5px; /* Add spacing between film posters */
+  }
+  
