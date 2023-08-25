@@ -1,8 +1,8 @@
 import React from "react";
 const FilmListHeading=(props)=>{
     return(
-<div>
-    <h1>{props.g}</h1>
+<div className="col">
+    <h1>{props.heading}</h1>
 </div>
 
 
