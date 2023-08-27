@@ -3,6 +3,7 @@
 /* Add this style to create a flex container for the film posters */
 .App{
 background: black;
+height:761px;
 color:#fff;
 
 
@@ -18,4 +19,29 @@ flex-wrap: nowrap; /* Allows posters to wrap to the next row if there's not enou
   .film-item {
     margin: 5px; /* Add spacing between film posters */
   }
+  .image-container{
+    position:relative;
+    transition:transform 0.3s;
+
+  }
+  .image-container :hover{
+    cursor:pointer;
+    transition:transform scale(1.1);
+  }
+  .overlay{
+    position:absolute;
+    background:rgba(0,0,0,0.8);
+    width:100%;
+    transition:0.5s;
+    opacity: 0;
+    bottom:0;
+font-size: 20px;
+padding:20px;
+text-align: center;  }
+.overlay:hover{
+  opacity: 1;
+}
+.image-container:hover > .overlay > .overlay:hover {
+  opacity: 1;
+}
   

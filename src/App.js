@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import FilmList from './components/FilmList';
 import FilmListHeading from './components/FilmListHeading';
 import SearchBox from './components/SearchBox';
+import AddFavourite from './components/AddFavourite';
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
@@ -38,7 +40,9 @@ const App = () => {
         <SearchBox searchFilm={searchFilm} setSearchFilm={setSearchFilm} />
       </div>
       <div className="row">
-        <FilmList films={films} />
+        <FilmList films={films} favourites={AddFavourite} />
+       
+
       </div>
     </div>
   );
