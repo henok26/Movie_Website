@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const App = () => {
   const [films, setFilms] = useState([]);
   const [searchFilm, setSearchFilm] = useState(""); // Initialize as an empty string
+  const [favouriteFilms,setFavouriteFilms]=useState("");
 
   const getFilmRequest = async (searchQuery) => {
     const apiKey = "ff1e75a7";
@@ -32,6 +33,10 @@ const App = () => {
       getFilmRequest(searchFilm);
     }
   }, [searchFilm]);
+ const  AddFavouriteFilm=(film)=>{
+const newFavouriteList=[...favouriteFilms];
+setFavouriteFilms(newFavouriteList);
+ }
 
   return (
     <div className="App container-fluid">
@@ -40,7 +45,17 @@ const App = () => {
         <SearchBox searchFilm={searchFilm} setSearchFilm={setSearchFilm} />
       </div>
       <div className="row">
-        <FilmList films={films} favourites={AddFavourite} />
+        <FilmList films={films} favouritesChosen={AddFavouriteFilm} favourites={AddFavourite} />
+       
+
+      </div>
+
+      <div className="row d-flex align-items-center mt-4 mb-4">
+        <FilmListHeading heading="Your Favourites" />
+        
+      </div>
+      <div className="row">
+        <FilmList films={favouriteFilms} favouritesChosen={AddFavouriteFilm} favourites={AddFavourite} />
        
 
       </div>
