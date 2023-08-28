@@ -4,13 +4,13 @@ import FilmList from './components/FilmList';
 import FilmListHeading from './components/FilmListHeading';
 import SearchBox from './components/SearchBox';
 import AddFavourite from './components/AddFavourite';
-
+import RemoveFavourite from './components/RemoveFavourite';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
   const [films, setFilms] = useState([]);
-  const [searchFilm, setSearchFilm] = useState(""); // Initialize as an empty string
-  const [favouriteFilms,setFavouriteFilms]=useState("");
+  const [searchFilm, setSearchFilm] = useState(''); // Initialize as an empty string
+  const [favouriteFilms,setFavouriteFilms]=useState('');
 
   const getFilmRequest = async (searchQuery) => {
     const apiKey = "ff1e75a7";
@@ -34,10 +34,14 @@ const App = () => {
     }
   }, [searchFilm]);
  const  AddFavouriteFilm=(film)=>{
-const newFavouriteList=[...favouriteFilms];
+const newFavouriteList=[...favouriteFilms,film];
 setFavouriteFilms(newFavouriteList);
  }
-
+ 
+ const  removeFavouriteFilm=(film)=>{
+  const newFavouriteList=favouriteFilms.filter((favouriteFilm) =>favouriteFilm.imdbId !== film.imdbId);
+  setFavouriteFilms(newFavouriteList);
+   }
   return (
     <div className="App container-fluid">
       <div className="row d-flex align-items-center mb-4">
@@ -55,7 +59,7 @@ setFavouriteFilms(newFavouriteList);
         
       </div>
       <div className="row">
-        <FilmList films={favouriteFilms} favouritesChosen={AddFavouriteFilm} favourites={AddFavourite} />
+        <FilmList films={favouriteFilms} favouritesChosen={removeFavouriteFilm} favourites={RemoveFavourite} />
        
 
       </div>
